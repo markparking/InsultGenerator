@@ -11,7 +11,6 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.all(12),
         child: Stack(
           fit: StackFit.expand,
            children: [
@@ -80,7 +79,6 @@ class Loading extends StatelessWidget {
     Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.all(12),
         child: Stack(
           fit: StackFit.expand,
           children: [
@@ -92,7 +90,6 @@ class Loading extends StatelessWidget {
     );
     }
   }
-}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                           //END Screen//
@@ -102,7 +99,6 @@ class End extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.all(12),
         child: Stack(
           fit: StackFit.expand,
           children: [
@@ -123,7 +119,7 @@ class Background extends StatelessWidget {        //Start image
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('image/bg.png'),
+          image: AssetImage('image/bge.png'),
           fit: BoxFit.cover,
         ),
       ),
