@@ -1,9 +1,12 @@
-import 'dart:async';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:insultgenerator/Buttons.dart';
+import 'package:insultgenerator/ImageClasses.dart';
 
 void main() => runApp(MaterialApp(
-  home: Home()
+    home: Home()
+        
 ));
 
 class Home extends StatelessWidget {
@@ -16,146 +19,16 @@ class Home extends StatelessWidget {
            children: [
              Background(),
              Align(
-               alignment: Alignment.bottomLeft,
-               child: Clean(),
+               alignment: Alignment.bottomCenter,
+               child: start(),
              ),
              Align(
-               alignment: Alignment.bottomRight,
-               child: Dirty(),
-             )
-             //Dirty(),
+               alignment: Alignment.bottomLeft,
+                 child: favoritesButton(),
+             ),
            ],
         ),
       ),
     );
   }
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                        //Buttons//
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-class Clean extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: Image.asset ('image/Clean.png'),
-      iconSize: 195,
-      onPressed: () => {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Loading()
-          ),
-        ),
-      },
-    );
-  }
-}
-
-class Dirty extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: Image.asset('image/Dirty.png'),
-      iconSize: 195,
-      onPressed: () => {
-      Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Loading()
-          ),
-        ),
-      },
-    );
-  }
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                        //Loading Screen//
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-class Loading extends StatelessWidget {
-
-  @override
-
-    Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            LImage(),
-            End(),
-          ],
-        ),
-      ),
-    );
-    }
-  }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                          //END Screen//
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-class End extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            EndImage(),
-          ],
-        ),
-      ),
-    );
-  }
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                      //Image Builders//
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-class Background extends StatelessWidget {        //Start image
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('image/bge.png'),
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-}
-
-class LImage extends StatelessWidget {            //Loading image
-  @override
-
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('image/Loading.gif'),
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-}
-class EndImage extends StatelessWidget {        //End Image
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('image/End.png'),
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-}
-
-void setTimeout(callback, time) {
-  Duration timeDelay = Duration(seconds: 3);
-  Timer(timeDelay, callback);
 }
