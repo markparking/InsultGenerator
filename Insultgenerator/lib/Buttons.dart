@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insultgenerator/Favorites.dart';
 import 'package:insultgenerator/LoadingScreen.dart';
-import 'package:flutter/services.dart';
-import 'package:insultgenerator/EndScreen.dart';
-
+import 'package:insultgenerator/main.dart';
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                               //Start Button//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,7 +15,7 @@ class start extends StatelessWidget {
       onPressed: () => {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Loading(),
+          MaterialPageRoute(builder: (context) => new Loading(),
           ),
         ),
       },
@@ -28,22 +26,7 @@ class start extends StatelessWidget {
                                               //Copy to Clipboard Button//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class CopyToClipboard extends StatelessWidget {
-  get insult => null;
 
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-        icon: Image.asset ('image/Copy-Button.png'),
-        iconSize: 250,
-        onPressed: () async {
-          await Clipboard.setData(new ClipboardData(text: '$insult')).then((_){
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text('Copied to your clipboard !')));
-          });
-        });
-  }
-}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                               //Favorites Button//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,6 +40,40 @@ class favoritesButton extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Favorites(),
+          ),
+        ),
+      },
+    );
+  }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                 //Save-To-Favorites Button//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+class SaveToFavoritesButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Image.asset ('image/Save-button.png'),
+      iconSize: 50,
+      onPressed: () => {
+
+      }
+    );
+  }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                  //GenerateNew Button//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+class Return extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Image.asset ('image/Return-button.png'),
+      iconSize: 250,
+      onPressed: () => {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Home(),
           ),
         ),
       },

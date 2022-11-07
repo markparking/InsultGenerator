@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:insultgenerator/EndScreen.dart';
 import 'package:insultgenerator/ImageClasses.dart';
+import 'package:insultgenerator/ListDatabase.dart';
 
 class Loading extends StatefulWidget {
   @override
@@ -13,7 +15,7 @@ class Loading extends StatefulWidget {
 class LoadingState extends State<Loading> {
   @override
   void initState() {
-    super.initState();
+     super.initState();
     startTime();
   }
   @override
@@ -28,8 +30,8 @@ class LoadingState extends State<Loading> {
     return new Timer(duration, route);
   }
   route() {
-    Navigator.pushReplacement(context, MaterialPageRoute(
-        builder: (context) => InsultText()
+    Navigator.pushReplacement(context, new MaterialPageRoute(
+        builder: (context) => new InsultText()
     ),
     );
   }
