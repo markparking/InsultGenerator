@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insultgenerator/Favorites.dart';
 import 'package:insultgenerator/LoadingScreen.dart';
+import 'package:insultgenerator/SettingsMenu.dart';
 import 'package:insultgenerator/main.dart';
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                               //Start Button//
@@ -23,14 +23,10 @@ class start extends StatelessWidget {
   }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                              //Copy to Clipboard Button//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                               //Favorites Button//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class favoritesButton extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return IconButton(
@@ -50,6 +46,7 @@ class favoritesButton extends StatelessWidget {
                                                  //Save-To-Favorites Button//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class SaveToFavoritesButton extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return IconButton(
@@ -65,15 +62,38 @@ class SaveToFavoritesButton extends StatelessWidget {
                                                   //GenerateNew Button//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class Return extends StatelessWidget {
+  const Return({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return IconButton(
       icon: Image.asset ('image/Return-button.png'),
-      iconSize: 250,
+      iconSize: 200,
       onPressed: () => {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Home(),
+          ),
+        ),
+      },
+    );
+  }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                               //Settings Button//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+class SettingsButton extends StatelessWidget {
+  const SettingsButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Image.asset ('image/SettingsIcon.png'),
+      iconSize: 50,
+      onPressed: () => {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SettingsMenu(),
           ),
         ),
       },

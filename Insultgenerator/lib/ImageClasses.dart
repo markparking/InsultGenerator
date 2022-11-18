@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 
 class Background extends StatelessWidget {        //Start image
@@ -14,8 +13,8 @@ class Background extends StatelessWidget {        //Start image
     );
   }
 }
-class LoadingImage extends StatelessWidget {
-  //Loading image
+
+class LoadingImage extends StatelessWidget {                   //Loading image
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,14 +27,42 @@ class LoadingImage extends StatelessWidget {
     );
   }
 }
-class FavoritesImage extends StatelessWidget {
-  //Loading image
+
+class FavoritesImage extends StatelessWidget {              //Favorites menu image
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('image/Favorites.png'),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+}
+
+class EndImage extends StatelessWidget {              //End Image
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('image/End.png'),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+}
+
+class SettingsImage extends StatelessWidget {                   //Loading image
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('image/SettingsImage.png'),
           fit: BoxFit.cover,
         ),
       ),
