@@ -1,14 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:insultgenerator/Buttons.dart';
 import 'package:insultgenerator/ImageClasses.dart';
 
-void main() => runApp(MaterialApp(
-    home: Home()
-        
-));
-
+void main() async {
+  runApp(MaterialApp(
+      home: Home()
+    )
+  );
+}
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -25,6 +24,10 @@ class Home extends StatelessWidget {
              Align(
                alignment: Alignment.bottomLeft,
                  child: favoritesButton(),
+             ),
+             Align(
+               alignment: Alignment.topLeft,
+               child: SettingsButton(),
              ),
            ],
         ),

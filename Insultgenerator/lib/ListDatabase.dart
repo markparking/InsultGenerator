@@ -1,6 +1,3 @@
-import 'dart:math';
-
-Random rnd = new Random();
 var list = [
 'I hope you sit on a wet bench and get your pants wet.',
   'May your butt itch, and your arms be to short to reach.',
@@ -41,6 +38,5 @@ var list = [
   "My good man, I don't know what makes you so stupid.  But whatever it is, it's really working.",
   "I would love to see it from your perspective, but I am incapable of sticking my head that far up my own ass.",
   "I wish you dripped out your mothers sauce-box when you were conceived.",
-  "I respectfully, don't care.",
-
+  "I respectfully, don't care.     ",
 ];
