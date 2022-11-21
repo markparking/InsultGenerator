@@ -25,10 +25,6 @@ class Home extends StatelessWidget {
                alignment: Alignment.bottomLeft,
                  child: favoritesButton(),
              ),
-             Align(
-               alignment: Alignment.topLeft,
-               child: SettingsButton(),
-             ),
            ],
         ),
       ),

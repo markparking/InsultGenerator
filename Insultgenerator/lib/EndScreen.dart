@@ -108,7 +108,7 @@ class CopyToClipboard extends StatelessWidget {
         icon: Image.asset ('image/Copy-Button.png'),
         iconSize: 200,
         onPressed: () async {
-          await Clipboard.setData(new ClipboardData(text: "${newInsult.getInsult}")).then((_){
+          await Clipboard.setData(new ClipboardData(text: "${newInsult.getInsult}\n")).then((_){
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text('Copied to your clipboard !')));
           });
@@ -144,7 +144,7 @@ class SaveToFavoritesState extends State<SaveToFavorites> {
             await Directory(directoryPath).create(recursive: true);
           }
           var sink = myFile.openWrite(mode: FileMode.append); // for appending at the end of file, pass parameter (mode: FileMode.append) to openWrite()
-          sink.write('${newInsult.getInsult} \n');
+          sink.write('${newInsult.getInsult} \n\n');
           await sink.flush();
           await sink.close();
 

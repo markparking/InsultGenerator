@@ -82,21 +82,3 @@ class Return extends StatelessWidget {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                //Settings Button//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-class SettingsButton extends StatelessWidget {
-  const SettingsButton({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: Image.asset ('image/SettingsIcon.png'),
-      iconSize: 50,
-      onPressed: () => {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => SettingsMenu(),
-          ),
-        ),
-      },
-    );
-  }
-}

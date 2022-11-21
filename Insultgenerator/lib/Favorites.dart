@@ -31,6 +31,7 @@ class FavoritesState extends State<Favorites> {
   Widget build(BuildContext context) {
     var myList = [];
     myList.add(contents);
+    final fList = myList.toSet().toList();
     return Scaffold(
       body: Container(
         child: Stack(
@@ -38,20 +39,22 @@ class FavoritesState extends State<Favorites> {
           children: [
             FavoritesImage(),
             Container(
-              width: 48.0,
-              height: 100.0,
-
-              child: ListView.builder(
+              width: 100,
+              height: 400,
+              padding: const EdgeInsets.all(10),
+              margin: EdgeInsets.only(top: 200),
+                child: ListView.builder(
+                    shrinkWrap: true,
                   padding: const EdgeInsets.all(15),
-
-                  itemCount: myList.length,
+                  itemCount: fList.length,
                   itemBuilder: (context, index){
-                    if(index < myList.length){
-                    final item = myList[index];
+                    if(index < fList.length){
+                    final item = fList[index];
                       return ListTile(
-                          title: Text(item,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 20, color: Colors.black, fontFamily: 'BrixtonRg'),));
+                            title: Text(item,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 20, color: Colors.black, fontFamily: 'BrixtonRg'),
+                            ));
                       }else{
                         return const Padding(
                           padding: EdgeInsets.symmetric(vertical: 32),
