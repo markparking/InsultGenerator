@@ -45,7 +45,6 @@ class InsultText extends StatefulWidget {           //Stateful widget which init
   State<InsultText> createState() => InsultTextState();
 }
 
-
 class InsultTextState extends State<InsultText> {
 
    @override
@@ -100,7 +99,7 @@ class InsultTextState extends State<InsultText> {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class CopyToClipboard extends StatelessWidget {
-  var clipInsult = newInsult.getInsult;
+  //var clipInsult = newInsult.getInsult;
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +107,7 @@ class CopyToClipboard extends StatelessWidget {
         icon: Image.asset ('image/Copy-Button.png'),
         iconSize: 200,
         onPressed: () async {
-          await Clipboard.setData(new ClipboardData(text: "${newInsult.getInsult}\n")).then((_){
+          await Clipboard.setData(new ClipboardData(text: "${newInsult.getInsult}")).then((_){
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text('Copied to your clipboard !')));
           });
@@ -116,12 +115,13 @@ class CopyToClipboard extends StatelessWidget {
   }
 }
 
-class SaveToFavorites extends StatefulWidget {
- SaveToFavorites({Key? key}) : super(key: key);
+class SaveToFavorites extends StatefulWidget{
+  const SaveToFavorites({Key? key}) : super(key: key);
 
   @override
   State<SaveToFavorites> createState() => SaveToFavoritesState();
 }
+
 
 class SaveToFavoritesState extends State<SaveToFavorites> {
   @override
@@ -130,24 +130,22 @@ class SaveToFavoritesState extends State<SaveToFavorites> {
         icon: Image.asset('image/Save-Ribbon.png'),
         iconSize: 150,
         onPressed: () async {
-
           requestStoragePermission;
-          Directory root = await getApplicationDocumentsDirectory(); // this is using path_provider
+        Directory root = await getApplicationDocumentsDirectory(); // this is using path_provider
           String directoryPath = root.path;
           var myFile = File(directoryPath + '/fav.txt');
           var b = await File(directoryPath + '/fav.txt').exists();
 
           if(b = true) {
-
-          }
+         }
           else{
             await Directory(directoryPath).create(recursive: true);
           }
-          var sink = myFile.openWrite(mode: FileMode.append); // for appending at the end of file, pass parameter (mode: FileMode.append) to openWrite()
-          sink.write('${newInsult.getInsult} \n\n');
+         var sink = myFile.openWrite(mode: FileMode.append); // for appending at the end of file, pass parameter (mode: FileMode.append) to openWrite()
+          sink.write('${newInsult.getInsult}\n');
           await sink.flush();
           await sink.close();
 
-    });
+          });
         }
   }

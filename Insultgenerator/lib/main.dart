@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:insultgenerator/Buttons.dart';
+import 'package:insultgenerator/Favorites.dart';
 import 'package:insultgenerator/ImageClasses.dart';
 
 void main() async {
