@@ -45,7 +45,7 @@ class FavoritesState extends State<Favorites> {
       Directory root = await getApplicationDocumentsDirectory(); // this is using path_provider
       String directoryPath = root.path;
       var myFile = File(directoryPath + '/fav.txt');
-      myFile.deleteSync();
+      myFile.delete();
       Directory(directoryPath).create(recursive: true);
       var sink = myFile.openWrite(mode: FileMode.append);
       sink.write(item + '\n');

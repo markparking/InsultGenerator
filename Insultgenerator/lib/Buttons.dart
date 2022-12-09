@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:insultgenerator/EndScreen.dart';
 import 'package:insultgenerator/Favorites.dart';
 import 'package:insultgenerator/LoadingScreen.dart';
 import 'package:insultgenerator/main.dart';
@@ -7,6 +8,7 @@ import 'package:insultgenerator/main.dart';
                                               //Start Button//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class start extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return IconButton(
@@ -22,6 +24,7 @@ class start extends StatelessWidget {
     );
   }
 }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                               //Favorites Button//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,16 +33,16 @@ class favoritesButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Image.asset ('image/Favorites-button.png'),
-      iconSize: 50,
-      onPressed: () => {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => new Favorites(),
+            icon: Image.asset ('image/Favorites-button.png'),
+            iconSize: 50,
+            onPressed: () => {
+            Navigator.push(
+              context,
+
+            MaterialPageRoute(builder: (context) => new Favorites(),
           ),
         ),
-      },
-    );
+      });
   }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,6 +60,24 @@ class Return extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Home(),
+          ),
+        ),
+      },
+    );
+  }
+}
+class Refresh extends StatelessWidget {
+  const Refresh({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Image.asset ('image/Refresh.png'),
+      iconSize: 250,
+      onPressed: () => {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EndScreen(),
           ),
         ),
       },

@@ -68,25 +68,36 @@ class InsultTextState extends State<InsultText> {
                 ),
               ),
             ),
-            Container(
-              child: Align(
-                alignment: Alignment(-1.1, 0.3),
-                child:
-                Return(),
-              ),
+            Positioned(
+              left: -10,
+              top: 258,
+              child: CopyToClipboard(),
+            ),
+            Positioned(
+              left: 200,
+              top: 370,
+              child: Return(),
+            ),
+
+            Positioned(
+              left: 260,
+              top: 258,
+              child: SaveToFavorites(),
             ),
             Container(
               child: Align(
-                alignment: Alignment(1.1, 0.3),
+                alignment: Alignment(-1.5, 0.6),
                 child:
-                CopyToClipboard(),
-              ),
-            ),
-            Container(
-              child: Align(
-                alignment: Alignment(1.1, -0.05),
-                child:
-                SaveToFavorites(),
+                IconButton(
+                  icon: Image.asset ('image/Refresh.png'),
+                  iconSize: 250,
+
+                  onPressed: () => {
+                  setState(()  {
+
+                  }),
+                  },
+                ),
               ),
             ),
           ],
@@ -105,7 +116,7 @@ class CopyToClipboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
         icon: Image.asset ('image/Copy-Button.png'),
-        iconSize: 200,
+        iconSize: 150,
         onPressed: () async {
           await Clipboard.setData(new ClipboardData(text: "${newInsult.getInsult}")).then((_){
             ScaffoldMessenger.of(context)
@@ -145,7 +156,9 @@ class SaveToFavoritesState extends State<SaveToFavorites> {
           sink.write('${newInsult.getInsult}\n');
           await sink.flush();
           await sink.close();
-
+            ScaffoldMessenger.of(context)
+                .showSnackBar(
+                SnackBar(content: Text('Saved to Favorites!')));
           });
-        }
-  }
+          }
+}
