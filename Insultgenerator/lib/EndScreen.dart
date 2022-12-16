@@ -68,22 +68,27 @@ class InsultTextState extends State<InsultText> {
                 ),
               ),
             ),
-            Positioned(
-              left: -10,
-              top: 258,
-              child: CopyToClipboard(),
+            Container(
+              child:
+              Align(
+                alignment: Alignment(-1.1, -0.05),
+                child: CopyToClipboard(),
             ),
-            Positioned(
-              left: 200,
-              top: 370,
-              child: Return(),
             ),
-
-            Positioned(
-              left: 260,
-              top: 258,
-              child: SaveToFavorites(),
+          Container(
+          child:
+          Align(
+            alignment: Alignment(1.0, 0.4),
+            child: Return(),
             ),
+        ),
+          Container(
+          child:
+          Align(
+            alignment: Alignment(1.1, -0.05),
+            child: SaveToFavorites(),
+            ),
+          ),
             Container(
               child: Align(
                 alignment: Alignment(-1.5, 0.6),
