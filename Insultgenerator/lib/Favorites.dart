@@ -41,18 +41,25 @@ class FavoritesState extends State<Favorites> {
     Directory root = await getApplicationDocumentsDirectory(); // this is using path_provider
     String directoryPath = root.path;
     var myFile = File(directoryPath + '/fav.txt');
+    RandomAccessFile raf = myFile.openSync();
+    raf.truncate(0);
     myList.forEach((item) async {
       Directory root = await getApplicationDocumentsDirectory(); // this is using path_provider
       String directoryPath = root.path;
       var myFile = File(directoryPath + '/fav.txt');
-      myFile.delete();
       Directory(directoryPath).create(recursive: true);
       var sink = myFile.openWrite(mode: FileMode.append);
-      sink.write(item + '\n');
-      await sink.flush();
-      await sink.close();
+      sink.write(item + ", ");
+      sink.close();
     });
 
+    // Read the contents of the file into a list
+    List<String> fileContents = myFile.readAsLinesSync();
+
+    // Update the data source for the ListView.builder
+    setState(() {
+      myList = fileContents;
+    });
   }
 
   var contents;
