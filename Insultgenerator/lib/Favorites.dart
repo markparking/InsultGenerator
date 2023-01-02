@@ -8,37 +8,87 @@ import 'package:path_provider/path_provider.dart';
 final LineSplitter ls = new LineSplitter();
 class Favorites extends StatefulWidget {
   Favorites({Key? key}) : super(key: key);
+  final GlobalKey<FavoritesState> favoritesKey = GlobalKey<FavoritesState>();
   @override
   State<Favorites> createState() => FavoritesState();
 }
 class FavoritesState extends State<Favorites> {
+  // Declare myFile at the top of the class
+  late File myFile;
   @override
+
   Future ReadFile() async {
-  Directory root = await getApplicationDocumentsDirectory(); // this is using path_provider
-  String directoryPath = root.path;
-  var myFile = File(directoryPath + '/fav.txt');
-  var contents  = myFile.readAsStringSync();//openRead().transform(utf8.decoder).transform(new LineSplitter()).forEach((l) => Text('line: $l'));
+    Directory root = await getApplicationDocumentsDirectory(); // this is using path_provider
+    String directoryPath = root.path;
+    var myFile = File(directoryPath + '/fav.txt');
+    var contents = myFile
+        .readAsStringSync(); //openRead().transform(utf8.decoder).transform(new LineSplitter()).forEach((l) => Text('line: $l'));
 
-  return contents;
-}
+    return contents;
+  }
 
   @override
-  void initState() {
+  void initState()  {
     super.initState();
+    getApplicationDocumentsDirectory().then((root) {
+      String directoryPath = root.path;
+      myFile = File(directoryPath + '/fav.txt');
       ReadFile().then((value) {
         setState(() {
-       contents = value;
+          contents = value;
           myList = ls.convert(contents);
         });
-       WidgetsBinding.instance
+
+        WidgetsBinding.instance
             .addPostFrameCallback((_) => DeleteFile());
       });
-    }
+    });
+  }
 
   @override
   Future<void> didChangeDependencies() async {
     super.didChangeDependencies();
-    Directory root = await getApplicationDocumentsDirectory(); // this is using path_provider
+    Directory root = await getApplicationDocumentsDirectory();
+    String directoryPath = root.path;
+    var myFile = File(directoryPath + '/fav.txt');
+    String contents = await myFile.readAsString();
+
+    // Update myList with the new contents
+    setState(() {
+      myList = ls.convert(contents);
+    });
+  }
+  void addItem(String item) {
+    setState(() {
+      myList.add(item);
+    });
+
+    // Delete the file
+    myFile.delete();
+
+    // Re-create the file
+    myFile.create();
+
+    // Write the updated contents of myList to the file
+    myFile.writeAsString(myList.join('\n'));
+  }
+
+  void deleteItem(int index) {
+    setState(() {
+      myList.removeAt(index);
+    });
+
+    // Delete the file
+    myFile.delete();
+
+    // Re-create the file
+    myFile.create();
+
+    // Write the updated contents of myList to the file
+    myFile.writeAsString(myList.join('\n'));
+  }
+
+    /*Directory root = await getApplicationDocumentsDirectory(); // this is using path_provider
     String directoryPath = root.path;
     var myFile = File(directoryPath + '/fav.txt');
     RandomAccessFile raf = myFile.openSync();
@@ -50,8 +100,8 @@ class FavoritesState extends State<Favorites> {
       Directory(directoryPath).create(recursive: true);
       var sink = myFile.openWrite(mode: FileMode.append);
       sink.write(item + ", ");
-      sink.close();
-    });
+      sink.close();*/
+/*    });
 
     // Read the contents of the file into a list
     List<String> fileContents = myFile.readAsLinesSync();
@@ -59,8 +109,8 @@ class FavoritesState extends State<Favorites> {
     // Update the data source for the ListView.builder
     setState(() {
       myList = fileContents;
-    });
-  }
+    });*/
+
 
   var contents;
   late List<String> myList = [];
@@ -102,7 +152,8 @@ class FavoritesState extends State<Favorites> {
                                           IconButton(
                                               onPressed: () {
                                                 setState(()  {
-                                                  myList.removeAt(index);
+                                                  deleteItem(index);
+
                                                   });
                                               }, icon: const Icon(Icons.delete)),
                                         ],

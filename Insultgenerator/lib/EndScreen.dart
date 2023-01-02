@@ -153,14 +153,19 @@ class SaveToFavoritesState extends State<SaveToFavorites> {
           var b = await File(directoryPath + '/fav.txt').exists();
 
           if(b = true) {
+            var sink = myFile.openWrite(mode: FileMode.append); // for appending at the end of file, pass parameter (mode: FileMode.append) to openWrite()
+            sink.write('\n${newInsult.getInsult}\n');
+            await sink.flush();
+            await sink.close();
          }
           else{
             await Directory(directoryPath).create(recursive: true);
+            var sink = myFile.openWrite(mode: FileMode.append); // for appending at the end of file, pass parameter (mode: FileMode.append) to openWrite()
+            sink.write('${newInsult.getInsult}\n');
+            await sink.flush();
+            await sink.close();
           }
-         var sink = myFile.openWrite(mode: FileMode.append); // for appending at the end of file, pass parameter (mode: FileMode.append) to openWrite()
-          sink.write('${newInsult.getInsult}\n');
-          await sink.flush();
-          await sink.close();
+
             ScaffoldMessenger.of(context)
                 .showSnackBar(
                 SnackBar(content: Text('Saved to Favorites!')));
